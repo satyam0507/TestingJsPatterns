@@ -13,48 +13,33 @@
 //    limitations under the License.
 
 
-var myModule = {
-
-    myProperty: "someValue",
-
-    // object literals can contain properties and methods.
-    // e.g we can define a further object for module configuration:
-    myConfig: {
-        useCaching: true,
-        language: "en"
+var testModule = (function () {
+ 
+  var counter = 0;
+  function a(){
+      console.log(counter);
+  }
+ 
+  return {
+ 
+    incrementCounter: function () {
+      return counter++;
     },
-
-    // a very basic method
-    saySomething: function () {
-        console.log("Where in the world is Paul Irish today?");
-    },
-
-    // output a value based on the current configuration
-    reportMyConfig: function () {
-        console.log("Caching is: " + (this.myConfig.useCaching ? "enabled" : "disabled"));
-    },
-
-    // override the current configuration
-    updateMyConfig: function (newConfig) {
-
-        if (typeof newConfig === "object") {
-            this.myConfig = newConfig;
-            console.log(this.myConfig.language);
-        }
+ 
+    resetCounter: function () {
+      console.log( "counter value prior to reset: " + counter );
+      counter = 0;
+      a();
     }
-};
-
-// Outputs: Where in the world is Paul Irish today?
-myModule.saySomething();
-
-// Outputs: Caching is: enabled
-myModule.reportMyConfig();
-
-// Outputs: fr
-myModule.updateMyConfig({
-    language: "fr",
-    useCaching: false
-});
-
-// Outputs: Caching is: disabled
-myModule.reportMyConfig();
+  };
+ 
+})();
+ 
+// Usage:
+ 
+// Increment our counter
+testModule.incrementCounter();
+ 
+// Check the counter value and reset
+// Outputs: counter value prior to reset: 1
+testModule.resetCounter();
