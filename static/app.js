@@ -1,4 +1,4 @@
-//    Copyright 2017 Satyam SIngh
+//    Copyright 2017 Satyam Singh
 // 
 //    Licensed under the Apache License, Version 2.0 (the "License");
 //    you may not use this file except in compliance with the License.
@@ -12,34 +12,24 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
+var height = document.body.offsetHeight;
+var width = document.body.offsetWidth;
+var obj = {
+  height: height,
+  width: width
+}
+parent.postMessage(obj, 'http://localhost:4430');
 
-var testModule = (function () {
- 
-  var counter = 0;
-  function a(){
-      console.log(counter);
+
+function gapush(type) {
+  var sizeObj = {
+    height: document.body.offsetHeight,
+    width: document.body.offsetWidth
   }
- 
-  return {
- 
-    incrementCounter: function () {
-      return counter++;
-    },
- 
-    resetCounter: function () {
-      console.log( "counter value prior to reset: " + counter );
-      counter = 0;
-      a();
-    }
-  };
- 
-})();
- 
-// Usage:
- 
-// Increment our counter
-testModule.incrementCounter();
- 
-// Check the counter value and reset
-// Outputs: counter value prior to reset: 1
-testModule.resetCounter();
+  var j = ['NotifyVisitors',sizeObj];
+  var name = JSON.stringify(j);
+  var domain = window.location.href;
+  var message = name;
+  //console.log(message);
+  parent.postMessage(message, domain);
+}

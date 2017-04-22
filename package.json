@@ -12,6 +12,7 @@
     "express": "^4.15.0",
     "body-parser": "^1.15.2",
     "express-handlebars": "^3.0.0",
-    "sw-toolbox": "^3.6.0"
+    "sw-toolbox": "^3.6.0",
+    "pem": "^1.9.4"
   }
 }
